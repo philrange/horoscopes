@@ -6,6 +6,8 @@ import './all.sass'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
 
+const image = '/img/flower_background.jpg'
+
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
   return (
@@ -41,6 +43,7 @@ const TemplateWrapper = ({ children }) => {
         <meta name="theme-color" content="#fff" />
 
         <meta property="og:type" content="business.business" />
+        <meta property="og:description" content={description} />
         <meta property="og:title" content={title} />
         <meta property="og:url" content="/" />
         <meta
@@ -48,7 +51,61 @@ const TemplateWrapper = ({ children }) => {
           content={`${withPrefix('/')}img/og-image.jpg`}
         />
       </Helmet>
-      <Navbar />
+
+
+<Navbar />
+
+
+<div
+      className="full-width-image margin-top-0"
+      style={{
+        backgroundImage: `url(${
+          !!image.childImageSharp ? image.childImageSharp.fluid.src : image
+        })`,
+        backgroundPosition: `top left`,
+        backgroundAttachment: `fixed`,
+        height: `200px`,
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          height: '150px',
+          lineHeight: '1',
+          justifyContent: 'space-around',
+          alignItems: 'left',
+          flexDirection: 'column',
+        }}
+      >
+        <h1
+          className="has-text-weight-bold is-size-3-mobile is-size-2-tablet is-size-1-widescreen"
+          style={{
+            boxShadow:
+              'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
+            backgroundColor: 'rgb(255, 68, 0)',
+            color: 'white',
+            lineHeight: '1',
+            padding: '0.25em',
+          }}
+        >
+          {title} fdsfsdds
+        </h1>
+        <h3
+          className="has-text-weight-bold is-size-5-mobile is-size-5-tablet is-size-4-widescreen"
+          style={{
+            boxShadow:
+              'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
+            backgroundColor: 'rgb(255, 68, 0)',
+            color: 'white',
+            lineHeight: '1',
+            padding: '0.25em',
+          }}
+        >
+           put starsigns here
+        </h3>
+      </div>
+    </div>
+
       <div>{children}</div>
       <Footer />
     </div>

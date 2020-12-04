@@ -1,17 +1,19 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import Starsigns from '../components/Starsigns'
 import './all.sass'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
 
-const image = '/img/flower_background.jpg'
+const image = 'img/flower_background.jpg'
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
   return (
     <div>
+      
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -55,9 +57,9 @@ const TemplateWrapper = ({ children }) => {
 
 <Navbar />
 
-
-<div
-      className="full-width-image margin-top-0"
+{/* banner pic */}
+<div style={{height: `20px`}}>
+    <div className="full-width-image margin-top-0"
       style={{
         backgroundImage: `url(${
           !!image.childImageSharp ? image.childImageSharp.fluid.src : image
@@ -66,48 +68,19 @@ const TemplateWrapper = ({ children }) => {
         backgroundAttachment: `fixed`,
         height: `200px`,
       }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          height: '150px',
-          lineHeight: '1',
-          justifyContent: 'space-around',
-          alignItems: 'left',
-          flexDirection: 'column',
-        }}
-      >
-        <h1
-          className="has-text-weight-bold is-size-3-mobile is-size-2-tablet is-size-1-widescreen"
-          style={{
-            boxShadow:
-              'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
-            backgroundColor: 'rgb(255, 68, 0)',
-            color: 'white',
-            lineHeight: '1',
-            padding: '0.25em',
-          }}
-        >
-          {title} fdsfsdds
-        </h1>
-        <h3
-          className="has-text-weight-bold is-size-5-mobile is-size-5-tablet is-size-4-widescreen"
-          style={{
-            boxShadow:
-              'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
-            backgroundColor: 'rgb(255, 68, 0)',
-            color: 'white',
-            lineHeight: '1',
-            padding: '0.25em',
-          }}
-        >
-           put starsigns here
-        </h3>
-      </div>
-    </div>
+    ></div>
+</div>
+{/* banner pic */}
 
-      <div>{children}</div>
+    {/* starsigns cards */}
+    <Starsigns />
+
+   
+{/* main content */}
+    <div id="content">{children}</div>
+
       <Footer />
+       
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import logo from '../img/logo.svg'
 
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -40,10 +39,15 @@ const Navbar = class extends React.Component {
       >
         <div className="container">
           <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Astrology Readings">
+        
+
         {/*<img src={logo} alt="Kaldi" style={{ width: '88px' }} />*/}
-                Astrology Readings
-            </Link>
+                
+        <div className='navbar-item'>
+            <h1>Astrology Readings</h1>
+        </div>
+
+                
             {/* Hamburger menu */}
             <div
               className={`navbar-burger burger ${this.state.navBarActiveClass}`}
@@ -55,6 +59,7 @@ const Navbar = class extends React.Component {
               <span />
             </div>
           </div>
+
           <div
             id="navMenu"
             className={`navbar-menu ${this.state.navBarActiveClass}`}
@@ -63,9 +68,31 @@ const Navbar = class extends React.Component {
               <Link className="navbar-item" to="/about">
                 About
               </Link>
-              <Link className="navbar-item" to="/horoscope">
-                Horoscope
-              </Link>
+
+                <div className="navbar-item has-dropdown is-hoverable">
+                  <Link className="navbar-link" to="">
+                    Horoscopes
+                  </Link>
+
+                    <div className="navbar-dropdown">
+                      <Link className="navbar-item" to="/horoscopes/aries">
+                        Aries
+                      </Link>               
+                      <Link className="navbar-item" to="/horoscopes/gemini">
+                        Gemini
+                      </Link>
+
+                       <hr className="navbar-divider"/>
+                     <Link className="navbar-item" to="/horoscopes/gemini">
+                        dfdf
+                      </Link>
+                    </div>
+
+                </div>
+
+
+
+
               <Link className="navbar-item" to="/blog">
                 Blog
               </Link>
@@ -79,8 +106,7 @@ const Navbar = class extends React.Component {
                 Houses
               </Link>
             </div>
-            <div className="navbar-end has-text-centered">
-            </div>
+
           </div>
         </div>
       </nav>

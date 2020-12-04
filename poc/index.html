@@ -1,0 +1,77 @@
+<html>
+
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+    </head>
+
+<body>
+    
+    <script>
+    
+        //this will be in the html page that calls the function
+        var sign = 'Aquarius';
+                    
+        var starsigns = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+        var totalNumberOfHoroscopes = 24;
+
+        function getReading(readingNumber) {
+            return "reading" + readingNumber;
+        }
+
+        function getTodaysReadings(sign) {
+            
+            let now = new Date();
+            now.setHours(0);
+            now.setMinutes(0);
+            let nowTime = now.getTime();
+            
+            let numberOfDaysSinceEpoch = Math.floor(nowTime / (1000*60*60*24));
+            let dayOffset = numberOfDaysSinceEpoch % totalNumberOfHoroscopes;
+            let gap = (totalNumberOfHoroscopes - 24)/2;
+
+            let today = (starsigns.indexOf(sign) + dayOffset) % totalNumberOfHoroscopes;
+            let tomorrow = (today + 12 + gap) % totalNumberOfHoroscopes;
+            
+            let todaysReading = getReading(today);
+            let tomorrowsReading = getReading(tomorrow);
+
+            return {today: todaysReading, tomorrow: tomorrowsReading};     
+        }
+        
+        var readings = getTodaysReadings(sign);
+        
+        
+//        document.write("now " + now);
+//        document.write("<br>"); 
+//        document.write("now " + nowTime);
+////        document.write("now " + new Date());
+//        document.write("<br>"); 
+//        document.write("dayOffset " + dayOffset);
+//        document.write("<br>");
+//        document.write("gap " + gap);
+//        document.write("<br>");
+        document.write("<br>");
+        document.write(sign);
+        document.write("<br>");
+        document.write("<br>");
+        document.write(JSON.stringify(readings));
+        document.write("<br>");
+        document.write("today " + readings.today);
+        document.write("<br>");
+        document.write("tomorrow " + readings.tomorrow);
+        document.write("<br>");
+        document.write("<br>");
+        document.write("<br>");
+        document.write("<br>");
+        
+    
+    </script>
+    
+    
+    
+    
+    
+    
+    </body>
+</html>

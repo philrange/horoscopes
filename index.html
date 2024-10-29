@@ -1,0 +1,138 @@
+ <html>
+ <head>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script src="script/readings.js"></script>
+
+ </head>
+ 
+ <body>
+
+     <div class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-4">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 flex items-center justify-center">
+  
+          Celestial Guide
+        </h1>
+        <p class="text-white/80 text-lg">Discover what the stars have in store for you</p>
+      </div>
+ 
+ 
+ Signs go here
+ <div id="readings"></div>
+ 
+ <script>
+ 
+ let readings = getTodaysReadings("Pisces")
+ var readingsDiv = document.getElementById("readings");
+ readingsDiv.innerText = readings["today"]
+ console.log(readings)
+
+ 
+ </script>
+ 
+ <div class="columns">
+ 
+  <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 shadow-lg hover:bg-white/20 transition-all duration-300">
+              <Star class="w-6 h-6 text-yellow-300 mb-2" />
+              <h3 class="text-white font-semibold">sign.name</h3>
+              <p class="text-white/80 text-sm">sign.date</p>
+            </div>
+			
+ <div class="column"><a href="/aries"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Aries</p></div></div></a></div><div class="column"><a href="/taurus"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Taurus</p></div></div></a></div><div class="column"><a href="/gemini"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Gemini</p></div></div></a></div><div class="column"><a href="/cancer"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Cancer</p></div></div></a></div><div class="column"><a href="/leo"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Leo</p></div></div></a></div><div class="column"><a href="/virgo"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Virgo</p></div></div></a></div><div class="column"><a href="/libra"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Libra</p></div></div></a></div><div class="column"><a href="/scorpio"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Scorpio</p></div></div></a></div><div class="column"><a href="/sagittarius/"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Sagittarius</p></div></div></a></div><div class="column"><a href="/capricorn/"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Capricorn</p></div></div></a></div><div class="column"><a href="/aquarius/"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Aquarius</p></div></div></a></div><div class="column"><a href="/pisces/"><div class="card"><div class="card-image"><figure class="image is-64x64"><img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder"/></figure></div><div class="card-content"><p class="title is-6">Pisces</p></div></div></a></div>
+ 
+ aa
+ <Star class="w-5 h-5 text-yellow-300 mr-2" />
+ 
+ bb
+  <div class="w-5 h-5 text-yellow-300 mr-2" />
+ </div>
+ 
+ <button id="myBtn">Click</button>
+
+ 
+  <motion.div
+  id="modal"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50"
+	  	style="display:none"
+    >
+      <div 
+        class="bg-white/10 backdrop-blur-md rounded-xl p-8 max-w-2xl w-full mx-4 shadow-2xl"
+
+      >
+        <div class="relative">
+          <img 
+            src={sign.backgroundUrl} 
+            alt={sign.name}
+            class="w-full h-48 object-cover rounded-lg mb-6"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg" />
+          <div class="absolute bottom-4 left-4">
+            <h2 class="text-3xl font-bold text-white mb-1">{sign.name}</h2>
+            <div class="flex items-center space-x-4 text-white/80">
+              <div class="flex items-center">
+                <Calendar class="w-4 h-4 mr-1" />
+                <span class="text-sm">{sign.date}</span>
+              </div>
+              <div class="flex items-center">
+                <Droplets class="w-4 h-4 mr-1" />
+                <span class="text-sm">{sign.element}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="flex items-center text-xl font-semibold text-white mb-2">
+              <Star class="w-5 h-5 text-yellow-300 mr-2" />
+              Today's Horoscope
+            </h3>
+            <p class="text-white/80 leading-relaxed">{horoscope.today}</p>
+          </div>
+
+          <div>
+            <h3 class="flex items-center text-xl font-semibold text-white mb-2">
+              <Star class="w-5 h-5 text-yellow-300 mr-2" />
+              Tomorrow's Horoscope
+            </h3>
+            <p class="text-white/80 leading-relaxed">{horoscope.tomorrow}</p>
+          </div>
+        </div>
+		
+ <!--onClick={onClose} -->
+        <button
+         
+          class="mt-8 w-full bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-colors duration-300"
+        >
+          Close
+        </button>
+      </div>
+    </motion.div>
+ 
+  
+ <script>
+ var modal = document.getElementById("modal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
+
+ </script>
+ 
+ </body>
+ 
+ </html>

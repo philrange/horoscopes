@@ -1,3 +1,6 @@
+
+//♈︎♉︎♊︎♋︎♌︎♍︎♎︎♏︎♐︎♑︎♒︎♓︎
+
 var zodiacSigns = [
   {
     name: "Aries",
@@ -84,3 +87,8 @@ var zodiacSigns = [
     backgroundUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80"
   }
 ];
+
+function getZodiacData(sign) {
+
+	return zodiacSigns.find(({ name }) => name === sign)
+}

@@ -6,7 +6,8 @@ var zodiacSigns = [
     name: "Aries",
     date: "March 21 - April 19",
     element: "Fire",
-    symbol: "Ram",
+    symbol: "Ram", 
+    icon : "♈︎",
     backgroundUrl: "https://images.unsplash.com/photo-1579033060982-1bb5b083f4fa?auto=format&fit=crop&q=80"
   },
   {
@@ -14,6 +15,7 @@ var zodiacSigns = [
     date: "April 20 - May 20",
     element: "Earth",
     symbol: "Bull",
+    icon : "♉︎",
     backgroundUrl: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&q=80"
   },
   {
@@ -21,6 +23,7 @@ var zodiacSigns = [
     date: "May 21 - June 20",
     element: "Air",
     symbol: "Twins",
+    icon : "♊︎",
     backgroundUrl: "https://images.unsplash.com/photo-1509515837298-2c67a3933321?auto=format&fit=crop&q=80"
   },
   {
@@ -28,6 +31,7 @@ var zodiacSigns = [
     date: "June 21 - July 22",
     element: "Water",
     symbol: "Crab",
+    icon : "♋︎",  
     backgroundUrl: "https://images.unsplash.com/photo-1502675135487-e971002a6adb?auto=format&fit=crop&q=80"
   },
   {
@@ -35,6 +39,7 @@ var zodiacSigns = [
     date: "July 23 - August 22",
     element: "Fire",
     symbol: "Lion",
+    icon : "♌︎",  
     backgroundUrl: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&q=80"
   },
   {
@@ -42,6 +47,7 @@ var zodiacSigns = [
     date: "August 23 - September 22",
     element: "Earth",
     symbol: "Virgin",
+    icon : "♍︎",
     backgroundUrl: "https://images.unsplash.com/photo-1439405326854-014607f694d7?auto=format&fit=crop&q=80"
   },
   {
@@ -49,6 +55,7 @@ var zodiacSigns = [
     date: "September 23 - October 22",
     element: "Air",
     symbol: "Scales",
+    icon : "♎︎",
     backgroundUrl: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80"
   },
   {
@@ -56,6 +63,7 @@ var zodiacSigns = [
     date: "October 23 - November 21",
     element: "Water",
     symbol: "Scorpion",
+    icon : "♏︎",
     backgroundUrl: "https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&q=80"
   },
   {
@@ -63,6 +71,7 @@ var zodiacSigns = [
     date: "November 22 - December 21",
     element: "Fire",
     symbol: "Archer",
+    icon : "♐︎",
     backgroundUrl: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&q=80"
   },
   {
@@ -70,6 +79,7 @@ var zodiacSigns = [
     date: "December 22 - January 19",
     element: "Earth",
     symbol: "Goat",
+    icon : "♑︎",
     backgroundUrl: "https://images.unsplash.com/photo-1507502707541-f369a3b18502?auto=format&fit=crop&q=80"
   },
   {
@@ -77,6 +87,7 @@ var zodiacSigns = [
     date: "January 20 - February 18",
     element: "Air",
     symbol: "Water Bearer",
+    icon : "♒︎",
     backgroundUrl: "https://images.unsplash.com/photo-1436891620584-47fd0e565afb?auto=format&fit=crop&q=80"
   },
   {
@@ -84,6 +95,7 @@ var zodiacSigns = [
     date: "February 19 - March 20",
     element: "Water",
     symbol: "Fish",
+    icon : "♓︎",
     backgroundUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80"
   }
 ];

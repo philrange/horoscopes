@@ -71,8 +71,8 @@ window.onclick = function(event) {
   var modalBackground = document.getElementById("modalBackground");
   
   modalDate.innerText = sign.date;
-  modalToday.innerText = sign.name;
-  modalTomorrow.innerText = sign.name;
+  modalToday.innerText = readings.today;
+  modalTomorrow.innerText = readings.tomorrow;
   modalElement.innerText = sign.element;
   modalBackground.src = sign.backgroundUrl;
 

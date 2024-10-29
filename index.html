@@ -44,7 +44,7 @@
  
  <!-- body -->
  <div id="starsigns" class="flex flex-wrap p-8 items-center space-x-2 space-y-2">
- <div id="myButton">click</a>
+
  
  <script>
  
@@ -60,17 +60,14 @@ window.onclick = function(event) {
  
  function openModal(sign) {
  
- 
   console.log(sign)
   let readings = getTodaysReadings(sign.name)
   var modalSignName = document.getElementById("modalSignName");
   modalSignName.innerText = sign.name;
  
-
   console.log(readings)
  
-   modal.style.display = "flex";
-
+  modal.style.display = "flex";
  }
  
  function closeModal() {
@@ -85,7 +82,6 @@ window.onclick = function(event) {
               <h3 class="text-white font-semibold">${sign.icon} ${sign.name}</h3>
               <p class="text-white/80 text-sm">${sign.date}</p>`
 			  
-
 	element.onclick = function() { openModal(sign); };
 		
 	starsigns.appendChild(element);		

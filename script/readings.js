@@ -6,7 +6,27 @@
 			
 			
         function getReading(readingNumber) {
-            return "reading" + readingNumber;
+		
+
+		const apiUrl = 'https://horoscopes-api-u4jy.onrender.com/horoscope/' + readingNumber;
+
+// Make a GET request
+var reading = fetch(apiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+		return reading;
+        
         }
 
         function getTodaysReadings(signName) {

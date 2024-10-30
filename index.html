@@ -91,7 +91,7 @@ window.onclick = function(event) {
     var element = document.createElement("div");
 	element.classList.add("w-56", "h-28", "bg-white/10", "backdrop-blur-md", "cursor-pointer", "rounded-lg", "p-4", "shadow-lg", "hover:bg-white/20", "transition-all", "duration-300", "starsign")
 	element.innerHTML = `<img src="img/starsigns/${sign.name.toLowerCase()}.svg" class="w-6 h-6 text-yellow-300 mb-2" />
-              <h3 class="text-white font-semibold">${sign.icon} ${sign.name}</h3>
+              <h3 class="text-white font-semibold">${sign.name}</h3>
               <p class="text-white/80 text-sm">${sign.date}</p>`
 			  
 	element.onclick = function() { openModal(sign); };

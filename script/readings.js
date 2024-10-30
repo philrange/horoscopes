@@ -4,50 +4,42 @@
 			var starsignNames = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
             var totalNumberOfHoroscopes = 24;
 			
+			var todaysReadings = null;
+			getReadings();
 			
-        function getReading(readingNumber) {
+        function getReadings() {
 		
 
-		const apiUrl = 'https://horoscopes-api-u4jy.onrender.com/horoscope/' + readingNumber;
+		const apiUrl = 'https://horoscopes-api-u4jy.onrender.com/horoscopes';
 
-// Make a GET request
-var reading = fetch(apiUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-	  return data;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-		return reading;
+		// Make a GET request
+			fetch(apiUrl)
+		  .then(response => {
+				  
+			//console.log(response);
+			if (!response.ok) {
+			  throw new Error('Network response was not ok');
+			}
+			return response.json();
+		  })
+		  .then(data => {
+			console.log(data);
+			  todaysReadings = data;
+		  })
+		  .catch(error => {
+			console.error('Error:', error);
+		  });
         
         }
 
         function getTodaysReadings(signName) {
             		
 			console.log("Getting reading for " + signName);
-            let now = new Date();
-            now.setHours(0);
-            now.setMinutes(0);
-            let nowTime = now.getTime();
-            
-            let numberOfDaysSinceEpoch = Math.floor(nowTime / (1000*60*60*24));
-            let dayOffset = numberOfDaysSinceEpoch % totalNumberOfHoroscopes;
-            let gap = (totalNumberOfHoroscopes - 24)/2;
+			console.log(todaysReadings);
 
-			console.log(starsignNames);
-            let today = (starsignNames.indexOf(signName) + dayOffset) % totalNumberOfHoroscopes;
-            let tomorrow = (today + 12 + gap) % totalNumberOfHoroscopes;
-            
-            let todaysReading = getReading(today);
-            let tomorrowsReading = getReading(tomorrow);
+			var readingsForSign = todaysReadings[signName];
+			var todaysReading = readingsForSign.today.content;
+			var tomorrowsReading = readingsForSign.tomorrow.content;
 
             return {today: todaysReading, tomorrow: tomorrowsReading};     
         }

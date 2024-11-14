@@ -1,17 +1,22 @@
- <html>
- <head>
- <title>Daily Astrology Readings</title>
- <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<html>
+<head>
+     <title>Daily Astrology Readings</title>
+     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
- <link rel="stylesheet" href="style.css"> 
- <script src="https://cdn.tailwindcss.com"></script>
- <script src="script/readings.js"></script>
- <script src="script/zodiacs.js"></script>
+     <link rel="stylesheet" href="style.css"> 
+     <script src="https://cdn.tailwindcss.com"></script>
+     <script src="script/readings.js"></script>
+     <script src="script/zodiacs.js"></script>
+     <script src="script/menus.js"></script>
 
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- </head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+      const linkNames = ["Starsigns", "Planets", "Houses"]
+ </script>
+</head>
  
- <body>
+<body onload='setMenuItemActive("Starsigns")'>
  
  
  <!-- navbar -->
@@ -20,37 +25,30 @@
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
-        <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+        <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMenu()">
           <span class="absolute -inset-0.5"></span>
           <span class="sr-only">Open main menu</span>
-          <!--
-            Icon when menu is closed.
-
-            Menu open: "hidden", Menu closed: "block"
-          -->
-          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+          <svg id="menuButtonClosed" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
-          <!--
-            Icon when menu is open.
-
-            Menu open: "block", Menu closed: "hidden"
-          -->
-          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+          <svg id="menuButtonOpen" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex flex-shrink-0 items-center">
-          <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+          <!--<img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">-->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-yellow-300 mr-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
         </div>
         <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-m font-medium text-white" aria-current="page">Starsigns</a>
-            <a href="#" class="rounded-md px-3 py-2 text-m font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Planets</a>
-            <a href="#" class="rounded-md px-3 py-2 text-m font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Houses</a>
+          <div id="links" class="flex space-x-4">
+            <script>
+                var links = document.getElementById("links");
+                linkNames.forEach(function(link) {
+                    links.appendChild(createMenuItem(link))
+                })
+            </script>
           </div>
         </div>
       </div>
@@ -95,23 +93,27 @@
   </div>
 
   <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="sm:hidden" id="mobile-menu">
-    <div class="space-y-1 px-2 pb-3 pt-2">
-      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+  <div class="sm:hidden hidden" id="mobile-menu">
+    <div id="mobileLinks" class="space-y-1 px-2 pb-3 pt-2">
+        <script>
+            var mobileLinks = document.getElementById("mobileLinks");
+            linkNames.forEach(function(link) {
+                mobileLinks.appendChild(createMobileMenuItem(link))
+            })
+        </script>
     </div>
   </div>
 </nav>
  <!-- end navbar -->
 
-<!-- header -->
-     <div class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-4">
-      <div class="text-center mb-8">
+<!-- main content -->
+     <div class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900items-center justify-center p-4">
+         
+   <!-- header -->      
+      <div class="text-center mt-8 mb-8 pt-8 min-h-48 bg-right bg-no-repeat 
+                  bg-[url('img/flower_background_small.jpg')] lg:bg-[url('img/flower_background.jpg')]" 
+           style="background-color: rgb(21 2 24)">
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 flex items-center justify-center">
-  
           Celestial Guide
         </h1>
         <p class="text-white/80 text-lg">Discover what the stars have in store for you</p>
@@ -130,31 +132,62 @@
 	  	style="display:none"
     >
 
-<div class="bg-white/10 backdrop-blur-md rounded-xl p-8 max-w-2xl w-full mx-4 shadow-2xl"><div class="relative"><img id="modalBackground" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&amp;fit=crop&amp;q=80" alt="Pisces" class="w-full h-48 object-cover rounded-lg mb-6"><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div><div class="absolute bottom-4 left-4"><h2 id="modalSignName" class="text-3xl font-bold text-white mb-1"></h2><div class="flex items-center space-x-4 text-white/80"><div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar w-4 h-4 mr-1"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg><span id="modalDate" class="text-sm">February 19 - March 20</span></div><div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets w-4 h-4 mr-1"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path></svg><span id="modalElement" class="text-sm">Water</span></div></div></div></div><div class="space-y-6"><div><h3 class="flex items-center text-xl font-semibold text-white mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-yellow-300 mr-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Today's Horoscope</h3><p id="modalToday" class="text-white/80 leading-relaxed">As Pisces, your intuitive powers are heightened today. Trust your gut feelings, especially in matters of the heart. Your ruling planet brings positive energy to your creative endeavors. It's a great time to start that project you've been thinking about.</p></div><div><h3 class="flex items-center text-xl font-semibold text-white mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-yellow-300 mr-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Tomorrow's Horoscope</h3><p id="modalTomorrow" class="text-white/80 leading-relaxed">Tomorrow brings new opportunities for Pisces. Your Water element will be particularly strong, helping you navigate any challenges that come your way. Focus on personal growth and don't be afraid to take calculated risks.</p></div></div><button onclick="closeModal()" class="mt-8 w-full bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-colors duration-300">Close</button></div>
+    <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 max-w-2xl w-full mx-4 shadow-2xl">
+        <div class="relative">
+            <img id="modalBackground" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&amp;fit=crop&amp;q=80" alt="background" class="w-full h-48 object-cover rounded-lg mb-6">
+            <div class="absolute bottom-4 left-4">
+                <h2 id="modalSignName" class="text-3xl font-bold text-white mb-1"></h2>
+                <div class="flex items-center space-x-4 text-white/80">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar w-4 h-4 mr-1"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>
+                        <span id="modalDate" class="text-sm">Date1 - Date 2</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets w-4 h-4 mr-1"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path></svg>
+                        <span id="modalElement" class="text-sm">Element</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-6">
+            <div>
+                <h3 class="flex items-center text-xl font-semibold text-white mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-yellow-300 mr-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Today's Horoscope</h3>
+                <p id="modalToday" class="text-white/80 leading-relaxed">today</p>
+            </div>
+            <div>
+                <h3 class="flex items-center text-xl font-semibold text-white mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-yellow-300 mr-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Tomorrow's Horoscope</h3>
+                <p id="modalTomorrow" class="text-white/80 leading-relaxed">tomorrow</p>
+            </div>
+        </div>
+        <button onclick="closeModal()" class="mt-8 w-full bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-colors duration-300">Close</button>
+    </div>
 
 </div>
 
  <!-- end modal pop up -->
  
- <!-- body -->
- <div id="starsigns" class="flex flex-wrap p-8 items-center space-x-2 space-y-2">
+ <!-- content -->
+ <!--<div id="starsigns" class="flex flex-wrap p-8 items-center space-x-2 space-y-2">-->
+<div id="content-Starsigns">
+ <div id="starsigns" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-8 items-center space-x-2 space-y-2">
 
  
  <script>
- 
-  var modal = document.getElementById("modal");
-  var starsigns = document.getElementById("starsigns");
+      
+    var modal = document.getElementById("modal");
+    var starsigns = document.getElementById("starsigns");
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    closeModal();
-  }
-} 
+     // When the user clicks anywhere outside of the modal, close it
+     window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+     } 
  
  function openModal(sign) {
  
-  console.log(sign)
+  //console.log(sign)
   let readings = getTodaysReadings(sign.name)
   var modalSignName = document.getElementById("modalSignName");
   modalSignName.innerText = sign.icon + " " + sign.name;
@@ -169,9 +202,10 @@ window.onclick = function(event) {
   modalTomorrow.innerText = readings.tomorrow;
   modalElement.innerText = sign.element;
   modalBackground.src = sign.backgroundUrl;
+  modalBackground.alt = sign.name;
 
 	 
-  console.log(readings)
+  //console.log(readings)
  
   modal.style.display = "flex";
  }
@@ -183,10 +217,10 @@ window.onclick = function(event) {
  function buildStarsignCard(sign) {
  
     var element = document.createElement("div");
-	element.classList.add("w-56", "h-28", "bg-white/10", "backdrop-blur-md", "cursor-pointer", "rounded-lg", "p-4", "shadow-lg", "hover:bg-white/20", "transition-all", "duration-300", "starsign")
+	element.classList.add("w-54", "h-28", "bg-white/10", "backdrop-blur-md", "cursor-pointer", "rounded-lg", "p-4", "shadow-lg", "hover:bg-white/20", "transition-all", "duration-300", "starsign")
 	element.innerHTML = `<img src="img/starsigns/${sign.name.toLowerCase()}.svg" class="w-6 h-6 text-yellow-300 mb-2" />
               <h3 class="text-white font-semibold">${sign.name}</h3>
-              <p class="text-white/80 text-sm">${sign.date}</p>`
+              <p class="text-white/80 text-xs">${sign.date}</p>`
 			  
 	element.onclick = function() { openModal(sign); };
 		
@@ -196,24 +230,16 @@ window.onclick = function(event) {
  zodiacSigns.forEach(function(starsign) {
 	buildStarsignCard(starsign)
  })
+
  </script>
+     
  </div>
- 
- 
- <!-- <div id="readings"></div> -->
- 
- <script>
- 
- /*
- let readings = getTodaysReadings("Pisces")
- var readingsDiv = document.getElementById("readings");
- var data = getZodiacData("Pisces")
- console.log(data)
- readingsDiv.innerText = readings["today"] + data["symbol"]
- console.log(readings)
-*/
- 
- </script>
+</div>
+         
+         <div id="content-Planets" class="hidden">planets</div>
+         <div id="content-Houses" class="hidden">housese</div>
+         
+ </div>
  
 
  

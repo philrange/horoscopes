@@ -1,5 +1,6 @@
 
 var menuOpen = false;
+var profileMenuOpen = false;
 
 function toggleMenu() {
     
@@ -12,13 +13,25 @@ function toggleMenu() {
     if (menuOpen) {
         menuButtonClosed.style.display = "none";
         menuButtonOpen.style.display = "block";
-        //mobileMenu.style.display = "block";
         mobileMenu.classList.remove("hidden");
         mobileMenu.classList.add("sm:hidden");
     } else {
         menuButtonClosed.style.display = "block";
         menuButtonOpen.style.display = "none";
         mobileMenu.classList.add("hidden");
+    }
+}
+
+function toggleProfileMenu() {
+            console.log("togg: " + profileMenuOpen)
+    var profileMenu = document.getElementById("profileMenu");
+    
+    profileMenuOpen = !profileMenuOpen;
+    
+    if (profileMenuOpen) {
+        profileMenu.classList.remove("hidden");
+    } else {
+        profileMenu.classList.add("hidden");
     }
 }
 
